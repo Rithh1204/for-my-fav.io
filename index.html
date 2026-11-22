@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Love Story ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffdce9, #ffb6d0, #ffe5ef);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+    overflow-x: hidden;
+}
+
+/* Background decoration */
+.background-hearts span {
+    position: fixed;
+    bottom: -50px;
+    color: rgba(255,255,255,.8);
+    pointer-events: none;
+    animation: floatUp linear infinite;
+    z-index: 0;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Main card */
+.card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    padding: 45px 35px;
+    background: rgba(255,255,255,.88);
+    border: 2px solid rgba(255,255,255,.9);
+    border-radius: 35px;
+    text-align: center;
+    box-shadow: 0 25px 70px rgba(173, 20, 87, .18);
+    backdrop-filter: blur(15px);
+    animation: appear 1s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.top-label {
+    display: inline-block;
+    background: #fff0f5;
+    color: #d63384;
+    padding: 9px 20px;
+    border-radius: 50px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(48px, 9vw, 70px);
+    color: #e91e63;
+    margin-top: 20px;
+}
+
+.subtitle {
+    color: #bd6384;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Photo frame */
+.photo-frame {
+    width: 145px;
+    height: 145px;
+    margin: 25px auto 10px;
+    padding: 6px;
+    border: 3px solid #f8a5c2;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 8px 25px rgba(233,30,99,.2);
+    overflow: hidden;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Heart */
+.heart {
+    font-size: 90px;
+    color: #ff4081;
+    display: inline-block;
+    margin: 8px 0;
+    text-shadow: 0 10px 25px rgba(255,64,129,.3);
+    animation: beat 1.2s infinite;
+}
+
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.2); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.12); }
+}
+
+h2 {
+    color: #ad1457;
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+.divider {
+    width: 65%;
+    height: 2px;
+    margin: 22px auto;
+    background: linear-gradient(to right, transparent, #f48fb1, transparent);
+}
+
+.message {
+    color: #805263;
+    font-size: 13px;
+    line-height: 2.1;
+}
+
+.love-name {
+    color: #e91e63;
+    font-weight: 700;
+    font-size: 19px;
+    margin-top: 20px;
+}
+
+.signature {
+    font-family: 'Great Vibes', cursive;
+    color: #c2185b;
+    font-size: 32px;
+    margin-top: 8px;
+}
+
+/* Button */
+.love-button {
+    margin-top: 28px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff5b96, #e91e63);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(233,30,99,.3);
+    transition: .3s;
+}
+
+.love-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 13px 28px rgba(233,30,99,.4);
+}
+
+/* Letter popup */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(70, 20, 45, .65);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.letter {
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(145deg, #fff, #fff0f5);
+    padding: 38px 25px;
+    border-radius: 28px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    animation: openLetter .5s ease;
+}
+
+@keyframes openLetter {
+    from {
+        opacity: 0;
+        transform: scale(.7) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.letter h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 42px;
+    color: #e91e63;
+}
+
+.letter p {
+    color: #805263;
+    font-size: 13px;
+    line-height: 2;
+    margin: 22px 0;
+}
+
+.close-button {
+    background: #e91e63;
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.close-button:hover {
+    background: #ad1457;
+}
+
+/* Footer */
+.footer {
+    margin-top: 30px;
+    color: #c56b8b;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.footer span {
+    color: #e91e63;
+}
+
+@media(max-width: 480px) {
+    .card {
+        padding: 35px 20px;
+    }
+
+    .photo-frame {
+        width: 125px;
+        height: 125px;
+    }
+
+    .message {
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating hearts -->
+<div class="background-hearts" id="hearts"></div>
+
+<!-- Main card -->
+<main class="card">
+
+    <div class="top-label">✦ A SPECIAL DAY FOR US ✦</div>
+
+    <h1>Happy Anniversary</h1>
+
+    <p class="subtitle">💕 Forever & Always 💕</p>
+
+    <!-- Replace this image URL with your girlfriend's photo -->
+    <div class="photo-frame">
+        <img src="https://placehold.co/300x300/ffe4ec/e91e63?text=Our+Love"
+             alt="Our special memory">
+    </div>
+
+    <div class="heart">♥</div>
+
+    <h2>To My Beautiful Girlfriend</h2>
+
+    <div class="divider"></div>
+
+    <p class="message">
+        Every moment with you is a beautiful memory.<br>
+        You make my life brighter every single day.<br><br>
+
+        Thank you for loving me and staying beside me.<br>
+        You are my happiness, my dream, and my world.<br><br>
+
+        No matter what happens,<br>
+        I will always choose you. ❤️
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="love-name">
+        I LOVE YOU Siv Fangg ❤️
+    </div>
+
+    <div class="signature">
+        Forever Yours, My Love 💗
+    </div>
+
+    <button class="love-button" onclick="openLetter()">
+        💌 OPEN MY LOVE LETTER
+    </button>
+
+    <div class="footer">
+        Made with <span>♥</span> by Somhetsothearith
+    </div>
+
+</main>
+
+<!-- Love letter popup -->
+<div class="modal" id="loveModal">
+    <div class="letter">
+
+        <h2>My Dearest Love 💌</h2>
+
+        <p>
+            You are the best thing that ever happened to me.<br><br>
+
+            Every smile of yours makes my day better.<br>
+            Every hug makes me feel at home.<br><br>
+
+            I don't need a perfect life.<br>
+            I just need you beside me.<br><br>
+
+            I promise to care for you,<br>
+            support you, and love you forever.<br><br>
+
+            You are my today and all of my tomorrows. ❤️
+        </p>
+
+        <h3 style="color:#e91e63; margin-bottom:20px;">
+            I LOVE YOU FOREVER 💕
+        </h3>
+
+        <button class="close-button" onclick="closeLetter()">
+            Close ❤️
+        </button>
+
+    </div>
+</div>
+
+<script>
+// Floating heart animation
+function createHeart() {
+    const heart = document.createElement("span");
+
+    heart.innerHTML = Math.random() > .5 ? "♥" : "♡";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 25) + "px";
+    heart.style.animationDuration = (5 + Math.random() * 6) + "s";
+
+    document.getElementById("hearts").appendChild(heart);
+
+    setTimeout(() => heart.remove(), 11000);
+}
+
+setInterval(createHeart, 400);
+
+// Open letter
+function openLetter() {
+    document.getElementById("loveModal").classList.add("show");
+}
+
+// Close letter
+function closeLetter() {
+    document.getElementById("loveModal").classList.remove("show");
+}
+
+// Click outside to close
+document.getElementById("loveModal").addEventListener("click", function(event) {
+    if (event.target === this) {
+        closeLetter();
+    }
+});
+
+// Escape key to close
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closeLetter();
+    }
+});
+</script>
+
+</body>
+</html>
